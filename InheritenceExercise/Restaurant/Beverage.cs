@@ -8,10 +8,11 @@ namespace Restaurant
 {
     public abstract class Beverage : Product
     {
-        protected Beverage(string name, decimal price, double milliliters) : base(name, price)
+        protected Beverage(string name, decimal price, double milliliters) 
+            : base(name, price)
         {
             Milliliters = milliliters;
         }
-        public virtual double Milliliters { get; set; }
+        public double Milliliters { get; set; }
     }
 }

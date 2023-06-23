@@ -8,12 +8,12 @@ namespace Restaurant
 {
     public class Cake : Dessert
     {
-
-        public Cake(string name, decimal price, double grams, double calories) : base(name, price, grams, calories)
+        private const double DefaultGrams = 250;
+        private const decimal DefaultPrice = 5m;
+        private const double DefaultCalories = 1000;
+        public Cake(string name, decimal price, double grams, double calories) 
+            : base(name, DefaultPrice, DefaultGrams, DefaultCalories)
         {
         }
-        public override double Grams => 250;
-        public override double Calories => 1000;
-        public override decimal Price => 5m;
     }
 }

@@ -8,11 +8,12 @@ namespace Restaurant
 {
     public abstract class Food: Product
     {
-        protected Food(string name, decimal price, double grams) : base(name, price)
+        public Food(string name, decimal price, double grams) 
+            : base(name, price)
         {
             Grams = grams;
         }
 
-        public virtual double Grams { get; set; }
+        public double Grams { get; set; }
     }
 }
