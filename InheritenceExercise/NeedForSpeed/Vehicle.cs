@@ -9,10 +9,10 @@ namespace NeedForSpeed
     public abstract class Vehicle
     {
 
-        public Vehicle(double fuel, int horsePower)
+        public Vehicle(int horsePower, double fuel)
         {
-            Fuel = fuel;
             HorsePower = horsePower;
+            Fuel = fuel;
         }
 
         private const double DefaultFuelConsumption = 1.25;

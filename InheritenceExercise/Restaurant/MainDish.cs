@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NeedForSpeed
+namespace Restaurant
 {
-    public abstract class Motorcycle : Vehicle
+    public class MainDish : Food
     {
-        protected Motorcycle(int horsePower, double fuel) : base(horsePower, fuel)
+        public MainDish(string name, decimal price, double grams) : base(name, price, grams)
         {
         }
     }
