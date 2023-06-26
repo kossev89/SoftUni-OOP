@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,11 +23,11 @@ namespace ClassBoxData
         public double Height
         {
             get { return height; }
-            set
+            private set
             {
                 if (value <= 0)
                 {
-                    throw new ArgumentException($"Length cannot be zero or negative.");
+                    throw new ArgumentException($"{nameof(Height)} cannot be zero or negative.");
                 }
                 height = value;
             }
@@ -36,11 +37,11 @@ namespace ClassBoxData
         public double Width
         {
             get { return width; }
-            set
+            private set
             {
                 if (value <= 0)
                 {
-                    throw new ArgumentException($"Width cannot be zero or negative.");
+                    throw new ArgumentException($"{nameof(Width)} cannot be zero or negative.");
                 }
                 width = value;
             }
@@ -50,11 +51,11 @@ namespace ClassBoxData
         public double Length
         {
             get { return length; }
-            set
+            private set
             {
                     if (value <= 0)
                     {
-                        throw new ArgumentException($"Length cannot be zero or negative.");
+                        throw new ArgumentException($"{nameof(Length)} cannot be zero or negative.");
                     }
                     length = value;
             }
