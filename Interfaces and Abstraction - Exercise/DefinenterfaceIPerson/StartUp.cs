@@ -1,6 +1,4 @@
 ﻿
-using DefinenterfaceIPerson;
-
 namespace PersonInfo
 {
     public class StartUp
