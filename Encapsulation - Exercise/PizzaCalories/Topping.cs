@@ -10,16 +10,21 @@ namespace PizzaCalories
 {
     public class Topping
     {
-		private int weight;
-		private const double baseCalories = 2;
+        private int weight;
+        private const double baseCalories = 2;
         private double modifier;
         private string type;
+        public Topping(string type, int weight)
+        {
+            Type = type;
+            Weight = weight;
+            Modifier = modifier;
+        }
 
-
-        public int Weight
-		{
-			get { return weight; }
-            private set
+        private int Weight
+        {
+            get { return weight; }
+            set
             {
                 if (value < 1 || value > 50)
                 {
@@ -28,14 +33,13 @@ namespace PizzaCalories
                 weight = value;
             }
         }
-        // to do
 
-		public double Modifier
-		{
-			get { return modifier; }
-			private set
-			{
-                switch (type)
+        private double Modifier
+        {
+            get { return modifier; }
+            set
+            {
+                switch (type.ToLower())
                 {
                     case "meat":
                         modifier = 1.2;
@@ -51,18 +55,18 @@ namespace PizzaCalories
                         break;
                 }
             }
-		}
+        }
 
 
-		public string Type
-		{
-			get { return type; }
-			private set 
-			{
-                if (value == "meat"
-                   || value == "veggies"
-                   || value == "cheese"
-				   || value == "sauce"
+        private string Type
+        {
+            get { return type; }
+            set
+            {
+                if (value.ToLower() == "meat"
+                   || value.ToLower() == "veggies"
+                   || value.ToLower() == "cheese"
+                   || value.ToLower() == "sauce"
                    )
                 {
                     type = value;
@@ -72,11 +76,16 @@ namespace PizzaCalories
                     throw new ArgumentException($"Cannot place {value} on top of your pizza.");
                 }
             }
-		}
+        }
 
         public double CaloriesPerGram
         {
-			get => baseCalories * modifier;
+            get => baseCalories * modifier;
+        }
+        public double CalculateCalories()
+        {
+            double totalCalories = this.weight * this.CaloriesPerGram;
+            return totalCalories;
         }
 
 

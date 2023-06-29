@@ -18,14 +18,14 @@ namespace PizzaCalories
 
         public Dough(string flourType, string bakingTechnique, int weight)
         {
-            FlourType=flourType;
+            FlourType = flourType;
             BakingTechnique = bakingTechnique;
             Weight = weight;
             DoughModifier = doughModifier;
             TechModifier = techModifier;
         }
 
-        public double TechModifier
+        private double TechModifier
         {
             get { return techModifier; }
             set
@@ -52,7 +52,7 @@ namespace PizzaCalories
         }
 
 
-        public double DoughModifier
+        private double DoughModifier
         {
             get { return doughModifier; }
             set
@@ -70,10 +70,10 @@ namespace PizzaCalories
         }
 
 
-        public int Weight
+        private int Weight
         {
             get { return weight; }
-            private set
+            set
             {
                 if (value < 1 || value > 200)
                 {
@@ -84,17 +84,17 @@ namespace PizzaCalories
         }
 
 
-        public string BakingTechnique
+        private string BakingTechnique
         {
             get { return bakingTechnique; }
-            private set
+            set
             {
-                if (value == "crispy"
-                    || value == "chewy"
-                    || value == "homemade"
+                if (value.ToLower() == "crispy"
+                    || value.ToLower() == "chewy"
+                    || value.ToLower() == "homemade"
                     )
                 {
-                    bakingTechnique = value;
+                    bakingTechnique = value.ToLower();
                 }
                 else
                 {
@@ -104,16 +104,16 @@ namespace PizzaCalories
         }
 
 
-        public string FlourType
+        private string FlourType
         {
             get { return flourType; }
-            private set
+            set
             {
-                if (value == "white"
-                    || value == "wholegrain"
+                if (value.ToLower() == "white"
+                    || value.ToLower() == "wholegrain"
                     )
                 {
-                    flourType = value;
+                    flourType = value.ToLower();
                 }
                 else
                 {
@@ -122,10 +122,10 @@ namespace PizzaCalories
             }
         }
 
-        public void CalculateCalories()
+        public double CalculateCalories()
         {
             double totalCalories = this.weight * this.CaloriesPerGram;
-            Console.WriteLine($"{totalCalories:f2}");
+            return totalCalories;
         }
 
     }

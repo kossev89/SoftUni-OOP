@@ -14,31 +14,53 @@ namespace ShoppingSpree
                 .Split(';', StringSplitOptions.RemoveEmptyEntries);
             foreach (var item in personsInfo)
             {
-                string[] arg = item
-                    .Split('=', StringSplitOptions.RemoveEmptyEntries);
-                string name = arg[0];
-                decimal money = decimal.Parse(arg[1]);
                 try
                 {
-                    Person person = new Person(name, money);
-                    persons.Add(person);
+                    string[] arg = item
+                    .Split('=', StringSplitOptions.RemoveEmptyEntries);
+                    string name = arg[0];
+                    decimal money = decimal.Parse(arg[1]);
+                    try
+                    {
+                        Person person = new Person(name, money);
+                        persons.Add(person);
+                    }
+                    catch (Exception ex)
+                    {
+
+                        Console.WriteLine(ex.Message);
+                        return;
+                    }
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
 
-                    Console.WriteLine(ex.Message);
-                    return;
                 }
+                
             }
             foreach (var item in productInfo)
             {
-                string[] arg = item
-                    .Split('=', StringSplitOptions.RemoveEmptyEntries);
-                string name = arg[0];
-                decimal price = decimal.Parse(arg[1]);
+                try
+                {
+                    string[] arg = item
+    .Split('=', StringSplitOptions.RemoveEmptyEntries);
+                    string name = arg[0];
+                    decimal price = decimal.Parse(arg[1]);
+                    try
+                    {
+                        Product product = new Product(name, price);
+                        products.Add(product);
+                    }
+                    catch (Exception ex)
+                    {
 
-                Product product = new Product(name, price);
-                products.Add(product);
+                        Console.WriteLine(ex.Message);
+                    }
+                }
+                catch (Exception)
+                {
+
+                }             
             }
             string[] commandInfo = Console.ReadLine()
                 .Split(' ', StringSplitOptions.RemoveEmptyEntries);

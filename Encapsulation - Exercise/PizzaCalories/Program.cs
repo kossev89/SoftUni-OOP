@@ -4,35 +4,79 @@
     {
         static void Main(string[] args)
         {
-            string[] inputInfo = Console.ReadLine()
+            string[] pizzaInfo = Console.ReadLine()
                 .Split(' ', StringSplitOptions.RemoveEmptyEntries);
-            while (inputInfo[0] != "END")
+            string pizzaName = string.Empty;
+            try
             {
-                switch (inputInfo[0])
-                {
-                    case "Dough":
-                        string flourType = inputInfo[1].ToLower();
-                        string bakingTechnique = inputInfo[2].ToLower();
-                        int weight = int.Parse(inputInfo[3]);
-                        try
-                        {
-                            Dough dough = new Dough(flourType, bakingTechnique, weight);
-                            dough.CalculateCalories();
-                        }
-                        catch (Exception ex)
-                        {
+                pizzaName = pizzaInfo[1];
+            }
+            catch (Exception pizzaEx)
+            {
 
-                            Console.WriteLine(ex.Message);
-                        }
-                        break;
-                }
-                inputInfo = Console.ReadLine()
+               
+            }
+            
+            try
+            {
+                Pizza pizza = new(pizzaName);
+                string[] inputInfo = Console.ReadLine()
                 .Split(' ', StringSplitOptions.RemoveEmptyEntries);
 
+                while (inputInfo[0] != "END")
+                {
+                    switch (inputInfo[0])
+                    {
+                        case "Dough":
+                            string flourType = inputInfo[1];
+                            string bakingTechnique = inputInfo[2];
+                            int weight = int.Parse(inputInfo[3]);
+                            try
+                            {
+                                Dough dough = new Dough(flourType, bakingTechnique, weight);
+                                pizza.Dough = dough;
+                                
+                            }
+                            catch (Exception ex)
+                            {
 
+                                Console.WriteLine(ex.Message);
+                                return;
+                            }
+                            break;
+                        case "Topping":
+                            string type = inputInfo[1];
+                            int weightTopping = int.Parse(inputInfo[2]);
+                            try
+                            {
+                                Topping topping = new(type, weightTopping);
+                                try
+                                {
+                                    pizza.AddTopping(topping);
+                                }
+                                catch (Exception top)
+                                {
 
+                                    Console.WriteLine(top.Message);
+                                    return;
+                                }
+                            }
+                            catch (Exception top)
+                            {
+                                Console.WriteLine(top.Message);
+                                return;
+                            }
+                            break;
+                    }
+                    inputInfo = Console.ReadLine()
+                    .Split(' ', StringSplitOptions.RemoveEmptyEntries);
+                }
+                Console.WriteLine(pizza.ToString());
+            }
+            catch (Exception pizzaEx)
+            {
 
-
+                Console.WriteLine(pizzaEx.Message);
             }
         }
     }
