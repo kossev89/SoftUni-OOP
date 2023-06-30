@@ -2,6 +2,7 @@
 using System.Runtime.ConstrainedExecution;
 using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 
 namespace Animals
 {
@@ -9,19 +10,20 @@ namespace Animals
     {
         public static void Main(string[] args)
         {
-            string animalType = Console.ReadLine();
-            List<Animal> animals = new List<Animal>();
-
-            while (animalType != "Beast!")
+            try
             {
-                string[] animalInfo = Console.ReadLine()
-                    .Split(' ', StringSplitOptions.RemoveEmptyEntries);
-                string name = animalInfo[0];
-                int age = int.Parse(animalInfo[1]);
-                string sex = animalInfo[2];
+                string animalType = Console.ReadLine();
+                List<Animal> animals = new List<Animal>();
 
-                try
+                while (animalType != "Beast!")
                 {
+                    string[] animalInfo = Console.ReadLine()
+                        .Split(' ', StringSplitOptions.RemoveEmptyEntries);
+                    string name = animalInfo[0];
+                    int age = int.Parse(animalInfo[1]);
+                    string sex = animalInfo[2];
+
+
                     switch (animalType)
                     {
                         case "Dog":
@@ -33,11 +35,11 @@ namespace Animals
                             animals.Add(cat);
                             break;
                         case "Tomcat":
-                            Tomcat tomcat = new Tomcat(name, age, sex);
+                            Tomcat tomcat = new Tomcat(name, age);
                             animals.Add(tomcat);
                             break;
                         case "Kitten":
-                            Kitten kitten = new Kitten(name, age, sex);
+                            Kitten kitten = new Kitten(name, age);
                             animals.Add(kitten);
                             break;
                         case "Frog":
@@ -45,20 +47,20 @@ namespace Animals
                             animals.Add(frog);
                             break;
                     }
+                    animalType = Console.ReadLine();
+                    foreach (var item in animals)
+                    {
+                        Console.WriteLine(item.ToString());
+                        item.ProduceSound();
+                    }
                 }
-                catch (Exception ex)
-                {
-
-                    Console.WriteLine(ex.Message);
-                }
-                
-                animalType = Console.ReadLine();
             }
-            foreach (var item in animals)
+            catch (Exception ex)
             {
-                Console.WriteLine(item.ToString());
-                item.ProduceSound();
+
+                Console.WriteLine(ex.Message);
             }
         }
+
     }
 }
