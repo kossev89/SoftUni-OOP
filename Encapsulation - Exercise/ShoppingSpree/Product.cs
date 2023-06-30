@@ -20,15 +20,29 @@ namespace ShoppingSpree
 		public string Name
 		{
 			get { return name; }
-			private set { name = value; }
-		}
+            private set
+            {
+                if (name == string.Empty)
+                {
+                    throw new ArgumentException($"{nameof(Name)} cannot be empty");
+                }
+                name = value;
+            }
+        }
 	
 
 		public decimal Cost
 		{
 			get { return cost; }
-			private set { cost = value; }
-		}
+            private set
+            {
+                if (value < 0)
+                {
+                    throw new ArgumentException($"{nameof(Cost)} cannot be negative");
+                }
+                cost = value;
+            }
+        }
 
 
 

@@ -11,7 +11,7 @@ namespace Restaurant
         private const double DefaultGrams = 250;
         private const decimal DefaultPrice = 5m;
         private const double DefaultCalories = 1000;
-        public Cake(string name, decimal price, double grams, double calories) 
+        public Cake(string name) 
             : base(name, DefaultPrice, DefaultGrams, DefaultCalories)
         {
         }
