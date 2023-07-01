@@ -9,7 +9,7 @@ namespace Animals
     internal class Kitten : Cat
     {
         private const string DefaultSex = "Female";
-        public Kitten(string name, int age, string sex) 
+        public Kitten(string name, int age) 
             : base(name, age, DefaultSex)
         {
         }

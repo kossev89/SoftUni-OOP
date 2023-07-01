@@ -9,7 +9,7 @@ namespace Animals
     public class Tomcat : Cat
     {
         private const string DefaultSex = "Male";
-        public Tomcat(string name, int age, string sex) 
+        public Tomcat(string name, int age) 
             : base(name, age, DefaultSex)
         {
         }
