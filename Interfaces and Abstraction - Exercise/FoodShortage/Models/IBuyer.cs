@@ -8,12 +8,12 @@ namespace FoodShortage.Models
 {
     public interface IBuyer
     {
-        public const int foodBought = 0;
-        public int Food { get; set; }
+        public string Name { get; set; }
+        public int Food { get;}
 
-    void BuyFood()
+       void BuyFood()
         {
-            //Food += foodBought;
+           
         }
     }
 }
