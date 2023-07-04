@@ -12,7 +12,7 @@ namespace WildFarm.Models
         private double weight;
         private int foodEaten;
 
-		public Animal(string name, double weight, int foodEaten)
+		protected Animal(string name, double weight)
 		{
 			this.name = name;
 			this.weight = weight;
@@ -37,10 +37,17 @@ namespace WildFarm.Models
 			set { foodEaten = value; }
 		}
 
+
 		public virtual void AskForFood()
 		{
 
 		}
+
+		public virtual void Eat(Food food, int quantity)
+		{
+
+		}
+		
 
 
 	}

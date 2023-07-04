@@ -10,7 +10,7 @@ namespace WildFarm.Models
     {
         private double wingSize;
 
-        public Bird(string name, double weight, int foodEaten, double wingSize) : base(name, weight, foodEaten)
+        protected Bird(string name, double weight, double wingSize) : base(name, weight)
         {
             WingSize = wingSize;
         }
