@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace MilitaryElite.Models
 {
-    public abstract class Soldier : ISoldier
+    public class Soldier : ISoldier
     {
-        protected Soldier(int id, string firstName, string lastName)
+        public Soldier(int id, string firstName, string lastName)
         {
             Id = id;
             FirstName = firstName;

@@ -34,6 +34,10 @@ namespace MilitaryElite.Models
 
             }
         }
+        public override string ToString()
+        {
+            return $"Code Name: {CodeName} State: {State}";
+        }
 
     }
 }

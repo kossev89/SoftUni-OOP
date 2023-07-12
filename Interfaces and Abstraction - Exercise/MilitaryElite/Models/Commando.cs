@@ -19,5 +19,23 @@ namespace MilitaryElite.Models
         {
             mission.State = "Finished";
         }
+
+        public void AddMission(Mission mission)
+        {
+            Missions.Add(mission);
+        }
+
+        public override string ToString()
+        {
+            StringBuilder sb = new();
+            sb.AppendLine($"Name: {FirstName} {LastName} Id: {Id} Salary: {Id}");
+            sb.AppendLine($"{Corps}");
+            sb.AppendLine("Missions:");
+            foreach (var mission in Missions)
+            {
+                sb.AppendLine(mission.ToString());
+            }
+            return sb.ToString().Trim();
+        }
     }
 }

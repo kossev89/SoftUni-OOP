@@ -9,13 +9,26 @@ namespace MilitaryElite.Models
 {
     public abstract class SpecialisedSoldier : Private, ISpecialisedSoldier
     {
-        protected SpecialisedSoldier(int id, string firstName, string lastName, decimal salary, string corps) : base(id, firstName, lastName)
+        protected SpecialisedSoldier(int id, string firstName, string lastName, decimal salary, string corps) : base(id, firstName, lastName, salary)
         {
-            Salary = salary;
             Corps = corps;
         }
+        private string corps;
 
-        public string Corps { get; private set; }
-        public decimal Salary { get; private set; }
+        public string Corps
+        {
+            get { return corps; }
+            set 
+            {
+                if (value == "Airforces" || value == "Marines" && string.IsNullOrEmpty(value))
+                {
+                    corps = value;
+                }
+                else
+                {
+                    throw new ArgumentException();
+                }
+            }
+        }
     }
 }
