@@ -1,5 +1,5 @@
 ﻿using Stealer;
 
 Spy spy = new();
-string result = spy.AnalyzeAccessModifiers("Stealer.Hacker");
+string result = spy.RevealGettersAndSetters("Stealer.Hacker");
 Console.WriteLine(result);
