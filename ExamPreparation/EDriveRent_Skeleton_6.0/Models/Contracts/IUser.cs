@@ -8,7 +8,7 @@
 
         public double Rating { get; }
 
-        public string DrivingLicenseNumber { get; }
+        public string DrivingLicenseNumber { get; set; }
 
         public bool IsBlocked { get; }
 

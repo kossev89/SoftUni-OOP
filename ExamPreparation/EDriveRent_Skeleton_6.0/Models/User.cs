@@ -1,4 +1,5 @@
 ﻿using EDriveRent.Models.Contracts;
+using EDriveRent.Utilities.Messages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,7 +30,7 @@ namespace EDriveRent.Models
             {
                 if (String.IsNullOrWhiteSpace(value))
                 {
-                    throw new ArgumentException("FirstName cannot be null or whitespace!");
+                    throw new ArgumentException($"{ExceptionMessages.FirstNameNull}");
                 }
                 firstName = value;
             }
@@ -42,7 +43,7 @@ namespace EDriveRent.Models
             {
                 if (String.IsNullOrWhiteSpace(value))
                 {
-                    throw new ArgumentException("LastName cannot be null or whitespace!");
+                    throw new ArgumentException($"{ExceptionMessages.LastNameNull}");
                 }
                 lastName = value;
             }
@@ -57,7 +58,7 @@ namespace EDriveRent.Models
             {
                 if (String.IsNullOrWhiteSpace(value))
                 {
-                    throw new ArgumentException("Driving license number is required!");
+                    throw new ArgumentException($"{ExceptionMessages.DrivingLicenseRequired}");
                 }
                 drivingLicenseNumber = value;
             }
