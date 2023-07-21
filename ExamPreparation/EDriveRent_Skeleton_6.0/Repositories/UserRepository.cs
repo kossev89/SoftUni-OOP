@@ -1,4 +1,5 @@
 ﻿using EDriveRent.Models;
+using EDriveRent.Models.Contracts;
 using EDriveRent.Repositories.Contracts;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace EDriveRent.Repositories
 {
-    public class UserRepository<IUser> : IRepository<IUser>
+    public class UserRepository : IRepository<IUser>
     {
         private List<IUser> users;
         public UserRepository()
@@ -23,7 +24,8 @@ namespace EDriveRent.Repositories
 
         public IUser FindById(string identifier)
         {
-            IUser user = users.FirstOrDefault(x => x.DrivingLicenseNumber = identifier);
+            IUser user = users.FirstOrDefault(x=>x.DrivingLicenseNumber==identifier);
+            return user;
         }
 
         public IReadOnlyCollection<IUser> GetAll()
