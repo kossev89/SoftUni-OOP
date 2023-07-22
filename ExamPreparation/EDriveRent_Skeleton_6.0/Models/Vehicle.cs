@@ -83,7 +83,7 @@ namespace EDriveRent.Models
 
         public virtual void Drive(double mileage)
         {
-            int percentage = (int)(mileage / MaxMileage);
+            int percentage = (int)(mileage / MaxMileage*100);
             BatteryLevel -= percentage;
         }
 
@@ -102,7 +102,7 @@ namespace EDriveRent.Models
             string status = string.Empty;
             if (IsDamaged == true)
             {
-                status = "damadged";
+                status = "damaged";
             }
             else
             {

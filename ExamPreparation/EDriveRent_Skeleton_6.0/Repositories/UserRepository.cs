@@ -24,18 +24,28 @@ namespace EDriveRent.Repositories
 
         public IUser FindById(string identifier)
         {
-            IUser user = users.FirstOrDefault(x=>x.DrivingLicenseNumber==identifier);
+            IUser user = users.FirstOrDefault(x => x.DrivingLicenseNumber == identifier);
             return user;
         }
 
         public IReadOnlyCollection<IUser> GetAll()
         {
-            throw new NotImplementedException();
+            IReadOnlyCollection<IUser> usersCopy = users;
+            return usersCopy;
         }
 
         public bool RemoveById(string identifier)
         {
-            throw new NotImplementedException();
+            IUser user = users.FirstOrDefault(x => x.DrivingLicenseNumber == identifier);
+            if (user != default)
+            {
+                users.Remove(user);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

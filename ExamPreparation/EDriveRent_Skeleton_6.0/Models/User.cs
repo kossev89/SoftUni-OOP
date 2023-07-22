@@ -54,7 +54,7 @@ namespace EDriveRent.Models
         public string DrivingLicenseNumber
         {
             get => drivingLicenseNumber;
-            private set
+            set
             {
                 if (String.IsNullOrWhiteSpace(value))
                 {
@@ -68,20 +68,22 @@ namespace EDriveRent.Models
 
         public void DecreaseRating()
         {
-            Rating += 0.5;
-            if (Rating > 10)
-            {
-                Rating = 10;
-            }
-        }
-
-        public void IncreaseRating()
-        {
             Rating -= 2;
             if (Rating < 0)
             {
                 Rating = 0;
                 IsBlocked = true;
+            }
+
+
+        }
+
+        public void IncreaseRating()
+        {
+            Rating += 0.5;
+            if (Rating > 10)
+            {
+                Rating = 10;
             }
         }
         public override string ToString()
