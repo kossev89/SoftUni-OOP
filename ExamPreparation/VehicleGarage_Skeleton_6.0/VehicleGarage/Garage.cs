@@ -41,7 +41,6 @@ namespace VehicleGarage
                     vehiclesCharged++;
                 }
             }
-
             return vehiclesCharged;
         }
 
