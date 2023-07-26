@@ -10,6 +10,7 @@ namespace RobotService.Models
     {
         public DomesticAssistant(string model) : base(model, 20000, 2000)
         {
+
         }
     }
 }

@@ -15,14 +15,15 @@ namespace RobotService.Models
         private int convertionCapacityIndex;
         private int batteryLevel;
         private IReadOnlyCollection<int> interfaceStandards;
-        private List<int> interfaceStandardsList;
+        private List<int> interfaceStandardsList=new();
 
         protected Robot(string model, int batteryCapacity, int convertionCapacityIndex)
         {
             this.model = model;
             this.batteryCapacity = batteryCapacity;
             this.convertionCapacityIndex = convertionCapacityIndex;
-            this.interfaceStandardsList = new();
+            this.interfaceStandards = interfaceStandardsList;
+            batteryLevel = batteryCapacity;
         }
 
         public string Model
@@ -56,7 +57,7 @@ namespace RobotService.Models
             get => batteryLevel;
             private set
             {
-                batteryLevel = batteryCapacity;
+                batteryLevel=value;
             }
         }
 
@@ -93,6 +94,7 @@ namespace RobotService.Models
             }
             else
             {
+                batteryLevel = 0;
                 return false;
             }
         }
@@ -100,7 +102,7 @@ namespace RobotService.Models
         public void InstallSupplement(ISupplement supplement)
         {
             interfaceStandardsList.Add(supplement.InterfaceStandard);
-            batteryCapacity -= supplement.BatteryUsage;
+           batteryCapacity -= supplement.BatteryUsage;
             batteryLevel -= supplement.BatteryUsage;
         }
 

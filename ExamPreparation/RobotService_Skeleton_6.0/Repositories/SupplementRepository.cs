@@ -10,7 +10,7 @@ namespace RobotService.Repositories
 {
     public class SupplementRepository : IRepository<ISupplement>
     {
-        private List<ISupplement> supplements;
+        private List<ISupplement> supplements = new();
         public void AddNew(ISupplement model)
         {
             supplements.Add(model);
@@ -18,7 +18,7 @@ namespace RobotService.Repositories
 
         public ISupplement FindByStandard(int interfaceStandard)
         {
-            return supplements.FirstOrDefault(x=>x.InterfaceStandard == interfaceStandard);
+            return supplements.FirstOrDefault(x => x.InterfaceStandard == interfaceStandard);
         }
 
         public IReadOnlyCollection<ISupplement> Models()
@@ -28,7 +28,7 @@ namespace RobotService.Repositories
 
         public bool RemoveByName(string typeName)
         {
-            return supplements.Remove(supplements.FirstOrDefault(x=>x.GetType().Name == typeName));
+            return supplements.Remove(supplements.FirstOrDefault(x => x.GetType().Name == typeName));
         }
     }
 }

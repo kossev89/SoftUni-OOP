@@ -9,7 +9,7 @@ namespace RobotService.Models
 {
     public class SpecializedArm : Supplement
     {
-        public SpecializedArm(int interfaceStandard, int batteryUsage) : base(10045, 10000)
+        public SpecializedArm() : base(10045, 10000)
         {
         }
     }
