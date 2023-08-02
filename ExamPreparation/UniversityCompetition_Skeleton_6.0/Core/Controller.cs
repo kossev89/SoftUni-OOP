@@ -111,17 +111,62 @@ namespace UniversityCompetition.Core
 
         public string ApplyToUniversity(string studentName, string universityName)
         {
-            throw new NotImplementedException();
+            string[] fullName = studentName
+                    .Split(' ', StringSplitOptions.RemoveEmptyEntries);
+            IStudent studentToApply = students.FindByName(studentName);
+            IUniversity universityToJoin = universities.FindByName(universityName);
+            if (studentToApply == null)
+            {
+                return string.Format(OutputMessages.StudentNotRegitered, fullName[0], fullName[1]);
+            }
+            else if (universityToJoin == null)
+            {
+                return string.Format(OutputMessages.UniversityNotRegitered, universityName);
+            }
+            else if (studentToApply.University == universityToJoin)
+            {
+                return string.Format(OutputMessages.StudentAlreadyJoined, fullName[0], fullName[1], universityName);
+            }
+            else if (universityToJoin.RequiredSubjects.All(x => studentToApply.CoveredExams.Contains(x)) == false)
+            {
+                return string.Format(OutputMessages.StudentHasToCoverExams, studentName, universityName);
+            }
+            studentToApply.JoinUniversity(universityToJoin);
+            return string.Format(OutputMessages.StudentSuccessfullyJoined, fullName[0], fullName[1],universityName);
         }
 
         public string TakeExam(int studentId, int subjectId)
         {
-            throw new NotImplementedException();
+            IStudent currentStudent = students.FindById(studentId);
+            ISubject currentSubject = subjects.FindById(subjectId);
+            if (currentStudent == null)
+            {
+                return OutputMessages.InvalidStudentId;
+            }
+            else if (currentSubject == null)
+            {
+                return OutputMessages.InvalidSubjectId;
+            }
+            else if (currentStudent.CoveredExams.Contains(currentSubject.Id))
+            {
+                return string.Format(OutputMessages.StudentAlreadyCoveredThatExam, currentStudent.FirstName, currentStudent.LastName, currentSubject.Name);
+            }
+            currentStudent.CoverExam(currentSubject);
+            return string.Format(OutputMessages.StudentSuccessfullyCoveredExam, currentStudent.FirstName, currentStudent.LastName, currentSubject.Name);
+
         }
 
         public string UniversityReport(int universityId)
         {
-            throw new NotImplementedException();
+            IUniversity universityToReport = universities.FindById(universityId);
+            List<IStudent> registeredStudents = students.Models.Where(x => x.University == universityToReport).ToList();
+            
+            StringBuilder sb = new();
+            sb.AppendLine($"*** {universityToReport.Name} ***");
+            sb.AppendLine($"Profile: {universityToReport.Category}");
+            sb.AppendLine($"Students admitted: {registeredStudents.Count}");
+            sb.AppendLine($"University vacancy: {universityToReport.Capacity-registeredStudents.Count}");
+            return sb.ToString().Trim();
         }
     }
 }
